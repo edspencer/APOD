@@ -1,11 +1,3 @@
-/*
- * This app uses a Carousel and a JSON-P proxy so make sure they're loaded first
- */
-Ext.require([
-    'Ext.carousel.Carousel',
-    'Ext.data.proxy.JsonP'
-]);
-
 /**
  * Our app is pretty simple - it just grabs the latest images from NASA's Astronomy Picture Of the Day 
  * (http://apod.nasa.gov/apod/astropix.html) and displays them in a Carousel. This file drives most of
@@ -23,6 +15,11 @@ Ext.application({
     models: ['Picture'],
     stores: ['Pictures'],
     views: ['Picture'],
+    
+    requires: [
+        'Ext.carousel.Carousel',
+        'Ext.data.proxy.JsonP'
+    ],
     
     launch: function() {
         var titleVisible = false,

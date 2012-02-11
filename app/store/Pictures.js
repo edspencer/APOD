@@ -1,3 +1,6 @@
+/**
+ * Grabs the APOD RSS feed from Google's Feed API, passes the data to our Model to decode
+ */
 Ext.define('apod.store.Pictures', {
     extend: 'Ext.data.Store',
     
