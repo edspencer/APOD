@@ -41469,6 +41469,12 @@ Ext.define('Ext.data.Model', {
     this.cache = new Ext.util.Collection(this.generateCacheId);
 });
 
+/**
+ * Simple Model that represents an image from NASA's Astronomy Picture Of the Day. The only remarkable
+ * thing about this model is the 'image' field, which uses a regular expression to pull its value out 
+ * of the main content of the RSS feed. Ideally the image url would have been presented in its own field
+ * in the RSS response, but as it wasn't we had to use this approach to parse it out
+ */
 Ext.define('apod.model.Picture', {
     extend: 'Ext.data.Model',
     
@@ -41494,16 +41500,7 @@ Ext.define('apod.model.Picture', {
         ]
     }
 });
-Ext.define('apod.view.Title', {
-    extend: 'Ext.Component',
-    
-    config: {
-        cls: 'apod-title',
-        top: 0,
-        left: 0,
-        right: 0
-    }
-});
+
 /**
  * This is a simple way to add an image of any size to your application and have it participate in the layout system
  * like any other component. This component typically takes between 1 and 3 configurations - a {@link #src}, and
@@ -41984,6 +41981,9 @@ Ext.define('Ext.data.proxy.Client', {
     }
 });
 
+/**
+ * Very simple specialization of Ext.Img, just saves the apod.model.Picture that was assigned to it
+ */
 Ext.define('apod.view.Picture', {
     extend: 'Ext.Img',
     xtype: 'apodimage',
@@ -41992,13 +41992,7 @@ Ext.define('apod.view.Picture', {
         /**
          * @cfg {apod.model.Picture} picture The Picture to show
          */
-        picture: null,
-        
-        /**
-         * @private
-         * @cfg {Boolean} infoVisible True if Picture information is currently visible
-         */
-        infoVisible: false
+        picture: null
     },
     
     updatePicture: function(picture) {
