@@ -1,3 +1,6 @@
+/**
+ * Very simple specialization of Ext.Img, just saves the apod.model.Picture that was assigned to it
+ */
 Ext.define('apod.view.Picture', {
     extend: 'Ext.Img',
     xtype: 'apodimage',
@@ -6,13 +9,7 @@ Ext.define('apod.view.Picture', {
         /**
          * @cfg {apod.model.Picture} picture The Picture to show
          */
-        picture: null,
-        
-        /**
-         * @private
-         * @cfg {Boolean} infoVisible True if Picture information is currently visible
-         */
-        infoVisible: false
+        picture: null
     },
     
     updatePicture: function(picture) {
