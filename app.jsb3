@@ -1,0 +1,946 @@
+{
+    "projectName": "Project Name",
+    "licenseText": "Copyright(c) 2011 Company Name",
+    "builds": [
+        {
+            "name": "All Classes",
+            "target": "all-classes.js",
+            "options": {
+                "debug": true
+            },
+            "files": [
+                {
+                    "path": "touch/src/event/publisher/",
+                    "name": "Publisher.js",
+                    "clsName": "Ext.event.publisher.Publisher"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "JsonP.js",
+                    "clsName": "Ext.data.JsonP"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Request.js",
+                    "clsName": "Ext.data.Request"
+                },
+                {
+                    "path": "touch/src/event/",
+                    "name": "Event.js",
+                    "clsName": "Ext.event.Event"
+                },
+                {
+                    "path": "touch/src/event/",
+                    "name": "Controller.js",
+                    "clsName": "Ext.event.Controller"
+                },
+                {
+                    "path": "touch/src/event/",
+                    "name": "ListenerStack.js",
+                    "clsName": "Ext.event.ListenerStack"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "ComponentManager.js",
+                    "clsName": "Ext.ComponentManager"
+                },
+                {
+                    "path": "touch/src/mixin/",
+                    "name": "Mixin.js",
+                    "clsName": "Ext.mixin.Mixin"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Point.js",
+                    "clsName": "Ext.util.Point"
+                },
+                {
+                    "path": "touch/src/behavior/",
+                    "name": "Behavior.js",
+                    "clsName": "Ext.behavior.Behavior"
+                },
+                {
+                    "path": "touch/src/fx/easing/",
+                    "name": "Abstract.js",
+                    "clsName": "Ext.fx.easing.Abstract"
+                },
+                {
+                    "path": "touch/src/data/writer/",
+                    "name": "Writer.js",
+                    "clsName": "Ext.data.writer.Writer"
+                },
+                {
+                    "path": "touch/src/fx/",
+                    "name": "State.js",
+                    "clsName": "Ext.fx.State"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "XTemplateParser.js",
+                    "clsName": "Ext.XTemplateParser"
+                },
+                {
+                    "path": "touch/src/mixin/",
+                    "name": "Identifiable.js",
+                    "clsName": "Ext.mixin.Identifiable"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "ResultSet.js",
+                    "clsName": "Ext.data.ResultSet"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Sorter.js",
+                    "clsName": "Ext.util.Sorter"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Filter.js",
+                    "clsName": "Ext.util.Filter"
+                },
+                {
+                    "path": "touch/src/fx/easing/",
+                    "name": "Momentum.js",
+                    "clsName": "Ext.fx.easing.Momentum"
+                },
+                {
+                    "path": "touch/src/fx/easing/",
+                    "name": "Bounce.js",
+                    "clsName": "Ext.fx.easing.Bounce"
+                },
+                {
+                    "path": "touch/src/event/",
+                    "name": "Dispatcher.js",
+                    "clsName": "Ext.event.Dispatcher"
+                },
+                {
+                    "path": "touch/src/event/",
+                    "name": "Dom.js",
+                    "clsName": "Ext.event.Dom"
+                },
+                {
+                    "path": "touch/src/event/publisher/",
+                    "name": "Dom.js",
+                    "clsName": "Ext.event.publisher.Dom"
+                },
+                {
+                    "path": "touch/src/mixin/",
+                    "name": "Traversable.js",
+                    "clsName": "Ext.mixin.Traversable"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "LineSegment.js",
+                    "clsName": "Ext.util.LineSegment"
+                },
+                {
+                    "path": "touch/src/fx/easing/",
+                    "name": "Linear.js",
+                    "clsName": "Ext.fx.easing.Linear"
+                },
+                {
+                    "path": "touch/src/fx/easing/",
+                    "name": "EaseOut.js",
+                    "clsName": "Ext.fx.easing.EaseOut"
+                },
+                {
+                    "path": "touch/src/data/writer/",
+                    "name": "Json.js",
+                    "clsName": "Ext.data.writer.Json"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "XTemplateCompiler.js",
+                    "clsName": "Ext.XTemplateCompiler"
+                },
+                {
+                    "path": "touch/src/mixin/",
+                    "name": "Observable.js",
+                    "clsName": "Ext.mixin.Observable"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Evented.js",
+                    "clsName": "Ext.Evented"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "AbstractComponent.js",
+                    "clsName": "Ext.AbstractComponent"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "Abstract.js",
+                    "clsName": "Ext.fx.animation.Abstract"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "Slide.js",
+                    "clsName": "Ext.fx.animation.Slide"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "Pop.js",
+                    "clsName": "Ext.fx.animation.Pop"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "PopOut.js",
+                    "clsName": "Ext.fx.animation.PopOut"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "Fade.js",
+                    "clsName": "Ext.fx.animation.Fade"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "SlideOut.js",
+                    "clsName": "Ext.fx.animation.SlideOut"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "Flip.js",
+                    "clsName": "Ext.fx.animation.Flip"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "FadeOut.js",
+                    "clsName": "Ext.fx.animation.FadeOut"
+                },
+                {
+                    "path": "touch/src/fx/animation/",
+                    "name": "Cube.js",
+                    "clsName": "Ext.fx.animation.Cube"
+                },
+                {
+                    "path": "touch/src/fx/",
+                    "name": "Animation.js",
+                    "clsName": "Ext.fx.Animation"
+                },
+                {
+                    "path": "touch/src/data/reader/",
+                    "name": "Reader.js",
+                    "clsName": "Ext.data.reader.Reader"
+                },
+                {
+                    "path": "touch/src/data/reader/",
+                    "name": "Json.js",
+                    "clsName": "Ext.data.reader.Json"
+                },
+                {
+                    "path": "touch/src/data/proxy/",
+                    "name": "Proxy.js",
+                    "clsName": "Ext.data.proxy.Proxy"
+                },
+                {
+                    "path": "touch/src/data/proxy/",
+                    "name": "Server.js",
+                    "clsName": "Ext.data.proxy.Server"
+                },
+                {
+                    "path": "touch/src/data/proxy/",
+                    "name": "JsonP.js",
+                    "clsName": "Ext.data.proxy.JsonP"
+                },
+                {
+                    "path": "touch/src/layout/",
+                    "name": "Default.js",
+                    "clsName": "Ext.layout.Default"
+                },
+                {
+                    "path": "touch/src/layout/",
+                    "name": "Fit.js",
+                    "clsName": "Ext.layout.Fit"
+                },
+                {
+                    "path": "touch/src/layout/",
+                    "name": "AbstractBox.js",
+                    "clsName": "Ext.layout.AbstractBox"
+                },
+                {
+                    "path": "touch/src/layout/",
+                    "name": "HBox.js",
+                    "clsName": "Ext.layout.HBox"
+                },
+                {
+                    "path": "touch/src/layout/",
+                    "name": "VBox.js",
+                    "clsName": "Ext.layout.VBox"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Sortable.js",
+                    "clsName": "Ext.util.Sortable"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "AbstractMixedCollection.js",
+                    "clsName": "Ext.util.AbstractMixedCollection"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "MixedCollection.js",
+                    "clsName": "Ext.util.MixedCollection"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "ItemCollection.js",
+                    "clsName": "Ext.ItemCollection"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "SizeMonitor.js",
+                    "clsName": "Ext.util.SizeMonitor"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "DateExtras.js",
+                    "clsName": "Ext.DateExtras"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Format.js",
+                    "clsName": "Ext.util.Format"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Template.js",
+                    "clsName": "Ext.Template"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "XTemplate.js",
+                    "clsName": "Ext.XTemplate"
+                },
+                {
+                    "path": "touch/src/fx/easing/",
+                    "name": "BoundMomentum.js",
+                    "clsName": "Ext.fx.easing.BoundMomentum"
+                },
+                {
+                    "path": "touch/src/util/translatable/",
+                    "name": "Abstract.js",
+                    "clsName": "Ext.util.translatable.Abstract"
+                },
+                {
+                    "path": "touch/src/util/translatable/",
+                    "name": "CssTransform.js",
+                    "clsName": "Ext.util.translatable.CssTransform"
+                },
+                {
+                    "path": "touch/src/util/translatable/",
+                    "name": "ScrollPosition.js",
+                    "clsName": "Ext.util.translatable.ScrollPosition"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Translatable.js",
+                    "clsName": "Ext.util.Translatable"
+                },
+                {
+                    "path": "touch/src/behavior/",
+                    "name": "Translatable.js",
+                    "clsName": "Ext.behavior.Translatable"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Draggable.js",
+                    "clsName": "Ext.util.Draggable"
+                },
+                {
+                    "path": "touch/src/behavior/",
+                    "name": "Draggable.js",
+                    "clsName": "Ext.behavior.Draggable"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Component.js",
+                    "clsName": "Ext.Component"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Button.js",
+                    "clsName": "Ext.Button"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Title.js",
+                    "clsName": "Ext.Title"
+                },
+                {
+                    "path": "touch/src/carousel/",
+                    "name": "Indicator.js",
+                    "clsName": "Ext.carousel.Indicator"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Spacer.js",
+                    "clsName": "Ext.Spacer"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Mask.js",
+                    "clsName": "Ext.Mask"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Decorator.js",
+                    "clsName": "Ext.Decorator"
+                },
+                {
+                    "path": "touch/src/carousel/",
+                    "name": "Item.js",
+                    "clsName": "Ext.carousel.Item"
+                },
+                {
+                    "path": "touch/src/field/",
+                    "name": "Input.js",
+                    "clsName": "Ext.field.Input"
+                },
+                {
+                    "path": "touch/src/field/",
+                    "name": "TextAreaInput.js",
+                    "clsName": "Ext.field.TextAreaInput"
+                },
+                {
+                    "path": "touch/src/scroll/",
+                    "name": "Scroller.js",
+                    "clsName": "Ext.scroll.Scroller"
+                },
+                {
+                    "path": "touch/src/scroll/indicator/",
+                    "name": "Abstract.js",
+                    "clsName": "Ext.scroll.indicator.Abstract"
+                },
+                {
+                    "path": "touch/src/scroll/indicator/",
+                    "name": "CssTransform.js",
+                    "clsName": "Ext.scroll.indicator.CssTransform"
+                },
+                {
+                    "path": "touch/src/scroll/indicator/",
+                    "name": "ScrollPosition.js",
+                    "clsName": "Ext.scroll.indicator.ScrollPosition"
+                },
+                {
+                    "path": "touch/src/scroll/",
+                    "name": "Indicator.js",
+                    "clsName": "Ext.scroll.Indicator"
+                },
+                {
+                    "path": "touch/src/scroll/",
+                    "name": "View.js",
+                    "clsName": "Ext.scroll.View"
+                },
+                {
+                    "path": "touch/src/behavior/",
+                    "name": "Scrollable.js",
+                    "clsName": "Ext.behavior.Scrollable"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Abstract.js",
+                    "clsName": "Ext.fx.layout.card.Abstract"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Scroll.js",
+                    "clsName": "Ext.fx.layout.card.Scroll"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Style.js",
+                    "clsName": "Ext.fx.layout.card.Style"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Cover.js",
+                    "clsName": "Ext.fx.layout.card.Cover"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Reveal.js",
+                    "clsName": "Ext.fx.layout.card.Reveal"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Slide.js",
+                    "clsName": "Ext.fx.layout.card.Slide"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Flip.js",
+                    "clsName": "Ext.fx.layout.card.Flip"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Fade.js",
+                    "clsName": "Ext.fx.layout.card.Fade"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Cube.js",
+                    "clsName": "Ext.fx.layout.card.Cube"
+                },
+                {
+                    "path": "touch/src/fx/layout/card/",
+                    "name": "Pop.js",
+                    "clsName": "Ext.fx.layout.card.Pop"
+                },
+                {
+                    "path": "touch/src/fx/layout/",
+                    "name": "Card.js",
+                    "clsName": "Ext.fx.layout.Card"
+                },
+                {
+                    "path": "touch/src/layout/",
+                    "name": "Card.js",
+                    "clsName": "Ext.layout.Card"
+                },
+                {
+                    "path": "touch/src/layout/",
+                    "name": "Layout.js",
+                    "clsName": "Ext.layout.Layout"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Container.js",
+                    "clsName": "Ext.Container"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Toolbar.js",
+                    "clsName": "Ext.Toolbar"
+                },
+                {
+                    "path": "touch/src/carousel/",
+                    "name": "Carousel.js",
+                    "clsName": "Ext.carousel.Carousel"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Panel.js",
+                    "clsName": "Ext.Panel"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Sheet.js",
+                    "clsName": "Ext.Sheet"
+                },
+                {
+                    "path": "touch/src/field/",
+                    "name": "Field.js",
+                    "clsName": "Ext.field.Field"
+                },
+                {
+                    "path": "touch/src/field/",
+                    "name": "Text.js",
+                    "clsName": "Ext.field.Text"
+                },
+                {
+                    "path": "touch/src/field/",
+                    "name": "TextArea.js",
+                    "clsName": "Ext.field.TextArea"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "MessageBox.js",
+                    "clsName": "Ext.MessageBox"
+                },
+                {
+                    "path": "touch/src/event/",
+                    "name": "Touch.js",
+                    "clsName": "Ext.event.Touch"
+                },
+                {
+                    "path": "touch/src/event/publisher/",
+                    "name": "TouchGesture.js",
+                    "clsName": "Ext.event.publisher.TouchGesture"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "Recognizer.js",
+                    "clsName": "Ext.event.recognizer.Recognizer"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "Touch.js",
+                    "clsName": "Ext.event.recognizer.Touch"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "SingleTouch.js",
+                    "clsName": "Ext.event.recognizer.SingleTouch"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "Drag.js",
+                    "clsName": "Ext.event.recognizer.Drag"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "Tap.js",
+                    "clsName": "Ext.event.recognizer.Tap"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "DoubleTap.js",
+                    "clsName": "Ext.event.recognizer.DoubleTap"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "LongPress.js",
+                    "clsName": "Ext.event.recognizer.LongPress"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "Swipe.js",
+                    "clsName": "Ext.event.recognizer.Swipe"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "HorizontalSwipe.js",
+                    "clsName": "Ext.event.recognizer.HorizontalSwipe"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "MultiTouch.js",
+                    "clsName": "Ext.event.recognizer.MultiTouch"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "Pinch.js",
+                    "clsName": "Ext.event.recognizer.Pinch"
+                },
+                {
+                    "path": "touch/src/event/recognizer/",
+                    "name": "Rotate.js",
+                    "clsName": "Ext.event.recognizer.Rotate"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "ComponentQuery.js",
+                    "clsName": "Ext.ComponentQuery"
+                },
+                {
+                    "path": "touch/src/event/publisher/",
+                    "name": "ComponentDelegation.js",
+                    "clsName": "Ext.event.publisher.ComponentDelegation"
+                },
+                {
+                    "path": "touch/src/event/publisher/",
+                    "name": "ComponentPaint.js",
+                    "clsName": "Ext.event.publisher.ComponentPaint"
+                },
+                {
+                    "path": "touch/src/event/publisher/",
+                    "name": "ComponentSize.js",
+                    "clsName": "Ext.event.publisher.ComponentSize"
+                },
+                {
+                    "path": "touch/src/log/",
+                    "name": "Base.js",
+                    "clsName": "Ext.log.Base"
+                },
+                {
+                    "path": "touch/src/log/",
+                    "name": "Logger.js",
+                    "clsName": "Ext.log.Logger"
+                },
+                {
+                    "path": "touch/src/log/formatter/",
+                    "name": "Formatter.js",
+                    "clsName": "Ext.log.formatter.Formatter"
+                },
+                {
+                    "path": "touch/src/log/writer/",
+                    "name": "Writer.js",
+                    "clsName": "Ext.log.writer.Writer"
+                },
+                {
+                    "path": "touch/src/log/writer/",
+                    "name": "Console.js",
+                    "clsName": "Ext.log.writer.Console"
+                },
+                {
+                    "path": "touch/src/log/formatter/",
+                    "name": "Default.js",
+                    "clsName": "Ext.log.formatter.Default"
+                },
+                {
+                    "path": "touch/src/fx/runner/",
+                    "name": "Css.js",
+                    "clsName": "Ext.fx.runner.Css"
+                },
+                {
+                    "path": "touch/src/fx/runner/",
+                    "name": "CssAnimation.js",
+                    "clsName": "Ext.fx.runner.CssAnimation"
+                },
+                {
+                    "path": "touch/src/fx/runner/",
+                    "name": "CssTransition.js",
+                    "clsName": "Ext.fx.runner.CssTransition"
+                },
+                {
+                    "path": "touch/src/fx/",
+                    "name": "Runner.js",
+                    "clsName": "Ext.fx.Runner"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "LoadMask.js",
+                    "clsName": "Ext.LoadMask"
+                },
+                {
+                    "path": "touch/src/viewport/",
+                    "name": "Default.js",
+                    "clsName": "Ext.viewport.Default"
+                },
+                {
+                    "path": "touch/src/viewport/",
+                    "name": "Android.js",
+                    "clsName": "Ext.viewport.Android"
+                },
+                {
+                    "path": "touch/src/viewport/",
+                    "name": "Ios.js",
+                    "clsName": "Ext.viewport.Ios"
+                },
+                {
+                    "path": "touch/src/viewport/",
+                    "name": "Viewport.js",
+                    "clsName": "Ext.viewport.Viewport"
+                },
+                {
+                    "path": "touch/src/app/",
+                    "name": "Action.js",
+                    "clsName": "Ext.app.Action"
+                },
+                {
+                    "path": "touch/src/app/",
+                    "name": "History.js",
+                    "clsName": "Ext.app.History"
+                },
+                {
+                    "path": "touch/src/app/",
+                    "name": "Controller.js",
+                    "clsName": "Ext.app.Controller"
+                },
+                {
+                    "path": "touch/src/app/",
+                    "name": "Profile.js",
+                    "clsName": "Ext.app.Profile"
+                },
+                {
+                    "path": "touch/src/app/",
+                    "name": "Route.js",
+                    "clsName": "Ext.app.Route"
+                },
+                {
+                    "path": "touch/src/app/",
+                    "name": "Router.js",
+                    "clsName": "Ext.app.Router"
+                },
+                {
+                    "path": "touch/src/app/",
+                    "name": "Application.js",
+                    "clsName": "Ext.app.Application"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Operation.js",
+                    "clsName": "Ext.data.Operation"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Batch.js",
+                    "clsName": "Ext.data.Batch"
+                },
+                {
+                    "path": "touch/src/data/identifier/",
+                    "name": "Simple.js",
+                    "clsName": "Ext.data.identifier.Simple"
+                },
+                {
+                    "path": "touch/src/mixin/",
+                    "name": "Sortable.js",
+                    "clsName": "Ext.mixin.Sortable"
+                },
+                {
+                    "path": "touch/src/mixin/",
+                    "name": "Filterable.js",
+                    "clsName": "Ext.mixin.Filterable"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Inflector.js",
+                    "clsName": "Ext.util.Inflector"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "SortTypes.js",
+                    "clsName": "Ext.data.SortTypes"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Types.js",
+                    "clsName": "Ext.data.Types"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Connection.js",
+                    "clsName": "Ext.data.Connection"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Error.js",
+                    "clsName": "Ext.data.Error"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "HashMap.js",
+                    "clsName": "Ext.util.HashMap"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Field.js",
+                    "clsName": "Ext.data.Field"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Collection.js",
+                    "clsName": "Ext.util.Collection"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Errors.js",
+                    "clsName": "Ext.data.Errors"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Ajax.js",
+                    "clsName": "Ext.Ajax"
+                },
+                {
+                    "path": "touch/src/data/proxy/",
+                    "name": "Ajax.js",
+                    "clsName": "Ext.data.proxy.Ajax"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "AbstractManager.js",
+                    "clsName": "Ext.AbstractManager"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "ModelManager.js",
+                    "clsName": "Ext.data.ModelManager"
+                },
+                {
+                    "path": "touch/src/data/association/",
+                    "name": "Association.js",
+                    "clsName": "Ext.data.association.Association"
+                },
+                {
+                    "path": "touch/src/data/association/",
+                    "name": "HasMany.js",
+                    "clsName": "Ext.data.association.HasMany"
+                },
+                {
+                    "path": "touch/src/data/association/",
+                    "name": "HasOne.js",
+                    "clsName": "Ext.data.association.HasOne"
+                },
+                {
+                    "path": "touch/src/data/association/",
+                    "name": "BelongsTo.js",
+                    "clsName": "Ext.data.association.BelongsTo"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Model.js",
+                    "clsName": "Ext.data.Model"
+                },
+                {
+                    "path": "app/model/",
+                    "name": "Picture.js",
+                    "clsName": "apod.model.Picture"
+                },
+                {
+                    "path": "app/view/",
+                    "name": "Title.js",
+                    "clsName": "apod.view.Title"
+                },
+                {
+                    "path": "touch/src/",
+                    "name": "Img.js",
+                    "clsName": "Ext.Img"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "StoreManager.js",
+                    "clsName": "Ext.data.StoreManager"
+                },
+                {
+                    "path": "touch/src/util/",
+                    "name": "Grouper.js",
+                    "clsName": "Ext.util.Grouper"
+                },
+                {
+                    "path": "touch/src/data/proxy/",
+                    "name": "Client.js",
+                    "clsName": "Ext.data.proxy.Client"
+                },
+                {
+                    "path": "app/view/",
+                    "name": "Picture.js",
+                    "clsName": "apod.view.Picture"
+                },
+                {
+                    "path": "touch/src/data/proxy/",
+                    "name": "Memory.js",
+                    "clsName": "Ext.data.proxy.Memory"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "Store.js",
+                    "clsName": "Ext.data.Store"
+                },
+                {
+                    "path": "app/store/",
+                    "name": "Pictures.js",
+                    "clsName": "apod.store.Pictures"
+                },
+                {
+                    "path": "touch/src/data/",
+                    "name": "ArrayStore.js",
+                    "clsName": "Ext.data.ArrayStore"
+                },
+                {
+                    "path": "touch/src/data/reader/",
+                    "name": "Array.js",
+                    "clsName": "Ext.data.reader.Array"
+                }
+            ]
+        },
+        {
+            "name": "Application - Production",
+            "target": "app-all.js",
+            "compress": true,
+            "files": [
+                {
+                    "path": "",
+                    "name": "all-classes.js"
+                },
+                {
+                    "path": "",
+                    "name": "app.js"
+                }
+            ]
+        }
+    ],
+    "resources": []
+}

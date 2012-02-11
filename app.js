@@ -1,6 +1,7 @@
-Ext.Loader.setConfig({
-    enabled: true
-});
+Ext.require([
+    'Ext.carousel.Carousel',
+    'Ext.data.proxy.JsonP'
+]);
 
 Ext.application({
     name: 'apod',
@@ -42,7 +43,9 @@ Ext.application({
             carousel.setActiveItem(0);
         });
         
-        var info = Ext.create('apod.view.Title').show();
+        var info = Ext.create('apod.view.Title');
+        
+        Ext.Viewport.add(info);
         
         var visible = false;
         
