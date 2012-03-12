@@ -17,7 +17,7 @@ Ext.define('apod.model.Picture', {
                     var content = record.get('content'),
                         regex   = /img src=\"([a-zA-Z0-9\_\.\/\:]*)\"/,
                         match   = content.match(regex),
-                        src     = match[1];
+                        src     = !match ? '' : match[1];
 
                     if (src != "" && !src.match(/\.gif$/)) {
                         src = "http://src.sencha.io/screen.width/" + src;
