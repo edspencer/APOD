@@ -185,9 +185,11 @@ Ext.define('Ext.data.JsonP', {
     request: function(options){
         options = Ext.apply({}, options);
 
+        //<debug>
         if (!options.url) {
             Ext.Logger.error('A url must be specified for a JSONP request.');
         }
+        //</debug>
 
         var me = this,
             disableCaching = Ext.isDefined(options.disableCaching) ? options.disableCaching : me.disableCaching,
@@ -1501,6 +1503,7 @@ Ext.define('Ext.data.writer.Writer', {
     }
 
     // Convert old properties in data into a config object
+    // <deprecated product=touch since=2.0>
     ,onClassExtended: function(cls, data, hooks) {
         var Component = this,
             defaultConfig = Component.prototype.config,
@@ -1512,13 +1515,16 @@ Ext.define('Ext.data.writer.Writer', {
             if (key in data) {
                 config[key] = data[key];
                 delete data[key];
+                // <debug warn>
                 Ext.Logger.deprecate(key + ' is deprecated as a property directly on the Writer prototype. ' +
                     'Please put it inside the config object.');
+                // </debug>
             }
         }
 
         data.config = config;
     }
+    // </deprecated>
 });
 
 /**
@@ -2198,6 +2204,7 @@ Ext.define('Ext.util.Sorter', {
         this.initConfig(config);
     },
 
+    // <debug>
     applySorterFn: function(sorterFn) {
         if (!sorterFn && !this.getProperty()) {
             Ext.Logger.error("A Sorter requires either a property or a sorterFn.");
@@ -2211,6 +2218,7 @@ Ext.define('Ext.util.Sorter', {
         }
         return property;
     },
+    // </debug>
 
     applyId: function(id) {
         if (!id) {
@@ -2410,7 +2418,9 @@ Ext.define('Ext.util.Filter', {
 
             var value = this.getValue();
             if (!this.getProperty() && !value && value !== 0) {
+                // <debug>
                 Ext.Logger.error('A Filter requires either a property and value, or a filterFn to be set');
+                // </debug>
                 return Ext.emptyFn;
             }
             else {
@@ -3433,6 +3443,7 @@ Ext.define('Ext.event.publisher.Dom', {
         this.publish(eventName, targets, new Ext.event.Dom(e));
     },
 
+    //<debug>
     hasSubscriber: function(target, eventName) {
         if (!this.handles(eventName)) {
             return false;
@@ -3459,6 +3470,7 @@ Ext.define('Ext.event.publisher.Dom', {
 
         return false;
     },
+    //</debug>
 
     getSubscribersCount: function(eventName) {
         if (!this.handles(eventName)) {
@@ -3760,7 +3772,9 @@ Ext.define('Ext.data.writer.Json', {
                 // sending as a param, need to encode
                 params[root] = Ext.encode(data);
             } else {
+                //<debug>
                 Ext.Logger.error('Must specify a root when using encode');
+                //</debug>
             }
         } else {
             // send as jsonData
@@ -4275,9 +4289,11 @@ Ext.define('Ext.mixin.Observable', {
         if (!this.observableId) {
             var id = this.getUniqueId();
 
+            //<debug error>
             if (!id.match(this.validIdRegex)) {
                 Ext.Logger.error("Invalid unique id of '" + id + "' for this object", this);
             }
+            //</debug>
 
             this.observableId = this.observableIdPrefix + id;
 
@@ -4929,6 +4945,7 @@ Ext.define('Ext.mixin.Observable', {
         unAfter: 'removeAfterListener'
     });
 
+    //<deprecated product=touch since=2.0>
     Ext.deprecateClassMethod(this, 'addEvents', function(){}, "addEvents() is deprecated. It's no longer needed to add events before firing");
 
     Ext.deprecateClassMethod(this, 'addManagedListener', function(object, eventName, fn, scope, options) {
@@ -4943,6 +4960,7 @@ Ext.define('Ext.mixin.Observable', {
         mon: 'addManagedListener',
         mun: 'removeManagedListener'
     });
+    //</deprecated>
 });
 
 /**
@@ -5361,9 +5379,11 @@ Ext.define('Ext.fx.animation.Abstract', {
         if (stateInstance) {
             states[name] = stateInstance;
         }
+        //<debug error>
         else if (name === this.STATE_TO) {
             Ext.Logger.error("Setting and invalid '100%' / 'to' state of: " + state);
         }
+        //</debug>
 
         return this;
     },
@@ -6029,9 +6049,11 @@ Ext.define('Ext.fx.Animation', {
             }
             defaultClass = Ext.ClassManager.getByAlias('animation.' + type);
 
+            //<debug error>
             if (!defaultClass) {
                 Ext.Logger.error("Invalid animation type of: '" + type + "'");
             }
+            //</debug>
         }
 
         return Ext.factory(config, defaultClass);
@@ -6633,6 +6655,7 @@ Ext.define('Ext.data.reader.Reader', {
 
 
     // Convert old properties in data into a config object
+    // <deprecated product=touch since=2.0>
     ,onClassExtended: function(cls, data, hooks) {
         var Component = this,
             defaultConfig = Component.prototype.config,
@@ -6644,13 +6667,16 @@ Ext.define('Ext.data.reader.Reader', {
             if (key in data) {
                 config[key] = data[key];
                 delete data[key];
+                // <debug warn>
                 Ext.Logger.deprecate(key + ' is deprecated as a property directly on the Reader prototype. ' +
                     'Please put it inside the config object.');
+                // </debug>
             }
         }
 
         data.config = config;
     }
+    // </deprecated>
 
 //
 //    /**
@@ -6707,6 +6733,7 @@ Ext.define('Ext.data.reader.Reader', {
         })
     });
 
+    //<deprecated product=touch since=2.0>
     /**
      * @cfg {String} root
      * The name of the property which contains the Array of row objects.  For JSON reader it's dot-separated list
@@ -6723,7 +6750,9 @@ Ext.define('Ext.data.reader.Reader', {
             config = config || {};
 
             if (config.root) {
+                // <debug>
                 Ext.Logger.deprecate('root has been deprecated as a configuration on Reader. Please use rootProperty instead.');
+                // </debug>
 
                 config.rootProperty = config.root;
                 delete config.root;
@@ -6732,6 +6761,7 @@ Ext.define('Ext.data.reader.Reader', {
             this.callOverridden([config]);
         }
     });
+    //</deprecated>
 });
 
 /**
@@ -6980,11 +7010,13 @@ Ext.define('Ext.data.reader.Json', {
 
             Ext.Logger.error('Unable to parse the JSON returned by the server: ' + ex.toString());
         }
+        //<debug>
         if (!data) {
             this.fireEvent('exception', this, response, 'JSON object not found');
 
             Ext.Logger.error('JSON object not found');
         }
+        //</debug>
 
         return data;
     },
@@ -7372,7 +7404,9 @@ Ext.define('Ext.data.proxy.Proxy', {
                 }
             };
 
+            // <debug warn>
             Ext.Logger.deprecate('Passes old-style signature to Proxy.batch (operations, listeners). Please convert to single options argument syntax.');
+            // </debug>
         }
 
         if (options.batch) {
@@ -7439,6 +7473,7 @@ Ext.define('Ext.data.proxy.Proxy', {
          }
     }
 
+    // <deprecated product=touch since=2.0>
     ,onClassExtended: function(cls, data) {
         var prototype = this.prototype,
             defaultConfig = prototype.config,
@@ -7450,11 +7485,14 @@ Ext.define('Ext.data.proxy.Proxy', {
             if (key != "control" && key in data) {
                 config[key] = data[key];
                 delete data[key];
+                // <debug warn>
                 Ext.Logger.warn(key + ' is deprecated as a property directly on the ' + this.$className + ' prototype. Please put it inside the config object.');
+                // </debug>
             }
         }
         data.config = config;
     }
+    // </deprecated>
 }, function() {
     // Ext.data2.proxy.ProxyMgr.registerType('proxy', this);
 
@@ -7612,7 +7650,9 @@ Ext.define('Ext.data.proxy.Server', {
         config = config || {};
         if (config.nocache !== undefined) {
             config.noCache = config.nocache;
+            // <debug>
             Ext.Logger.warn('nocache configuration on Ext.data.proxy.Server has been deprecated. Please use noCache.');
+            // </debug>
         }
         this.callParent([config]);
     },
@@ -7860,9 +7900,11 @@ Ext.define('Ext.data.proxy.Server', {
         var me = this,
             url = me.getUrl(request);
 
+        //<debug>
         if (!url) {
             Ext.Logger.error("You are using a ServerProxy but have not supplied it with a url.");
         }
+        //</debug>
 
         if (me.getNoCache()) {
             url = Ext.urlAppend(url, Ext.String.format("{0}={1}", me.getCacheString(), Ext.Date.now()));
@@ -7895,7 +7937,9 @@ Ext.define('Ext.data.proxy.Server', {
      * @param {Object} scope The scope in which to execute the callback
      */
     doRequest: function(operation, callback, scope) {
+        //<debug>
         Ext.Logger.error("The doRequest function has not been implemented on your Ext.data.proxy.Server subclass. See src/data/ServerProxy.js for details");
+        //</debug>
     },
 
     /**
@@ -11698,7 +11742,9 @@ var utilDate = Ext.DateExtras;
 
 Ext.apply(Ext.Date, utilDate);
 
+//<deprecated product=touch since="2.0">
 Ext.apply(Ext.util.Date, utilDate);
+//</deprecated>
 
 })();
 
@@ -12507,7 +12553,9 @@ Ext.define('Ext.XTemplate', {
         try {
             me.fn.call(me, out, values, {}, 1, 1);
         } catch (e) {
+            //<debug>
             Ext.Logger.error(e.message);
+            //</debug>
         }
 
         return out;
@@ -13605,10 +13653,13 @@ Ext.define('Ext.util.Draggable', {
     }
 
 }, function() {
+    //<deprecated product=touch since=2.0>
     this.override({
         constructor: function(config) {
             if (config && config.constrain) {
+                //<debug warn>
                 Ext.Logger.deprecate("'constrain' config is deprecated, please use 'contraint' instead");
+                //</debug>
                 config.contraint = config.constrain;
                 delete config.constrain;
             }
@@ -13616,6 +13667,7 @@ Ext.define('Ext.util.Draggable', {
             return this.callOverridden(arguments);
         }
     });
+    //</deprecated>
 });
 
 
@@ -14692,10 +14744,14 @@ Ext.define('Ext.Component', {
 
         for (i = 0, ln = config.length; i < ln; i++) {
             configObj = config[i];
+           //<deprecated product=touch since=2.0>
                 if (Ext.isObject(configObj) && configObj.ptype) {
+                    //<debug warn>
                         Ext.Logger.deprecate('Using a ptype is now deprecated, please use type instead', 1);
+                    //</debug>
                     configObj.type = configObj.ptype;
                 }
+           //</deprecated>
             config[i] = Ext.factory(configObj, 'Ext.plugin.Plugin', null, 'plugin');
         }
 
@@ -15094,8 +15150,10 @@ Ext.define('Ext.Component', {
     applyDocked: function(docked) {
         if (docked) {
             if (!this.dockPositions[docked]) {
+                //<debug error>
                 Ext.Logger.error("Invalid docking position of '" + docked + "', must be either 'top', 'right', 'bottom', " +
                     "'left' or `null` (for no docking)", this);
+                //</debug>
                 return;
             }
 
@@ -15588,10 +15646,12 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
     //@private
     doAddListener: function(name, fn, scope, options, order) {
         if (options && 'element' in options) {
+            //<debug error>
             if (this.referenceList.indexOf(options.element) === -1) {
                 Ext.Logger.error("Adding event listener with an invalid element reference of '" + options.element +
                     "' for this component. Available values are: '" + this.referenceList.join("', '") + "'", this);
             }
+            //</debug>
 
             // The default scope is this component
             this[options.element].doAddListener(name, fn, scope || this, options, order);
@@ -15603,10 +15663,12 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
     //@private
     doRemoveListener: function(name, fn, scope, options, order) {
         if (options && 'element' in options) {
+            //<debug error>
             if (this.referenceList.indexOf(options.element) === -1) {
                 Ext.Logger.error("Removing event listener with an invalid element reference of '" + options.element +
                     "' for this component. Available values are: '" + this.referenceList.join('", "') + "'", this);
             }
+            //</debug>
 
             // The default scope is this component
             this[options.element].doRemoveListener(name, fn, scope || this, options, order);
@@ -15720,9 +15782,11 @@ alert(t.getXTypes());  // alerts 'component/field/textfield'
         }
 
         var matches = alignment.match(this.alignmentRegex);
+        //<debug error>
         if (!matches) {
             Ext.Logger.error("Invalid alignment value of '" + alignment + "'");
         }
+        //</debug>
 
         var from = matches[1].split(''),
             to = matches[2].split(''),
@@ -15882,6 +15946,7 @@ var owningTabPanel = grid.up('tabpanel');
     }
 
     // Convert old properties in data into a config object
+    // <deprecated product=touch since=2.0>
     ,onClassExtended: function(cls, data, hooks) {
         var Component = this,
             defaultConfig = Component.prototype.config,
@@ -15892,15 +15957,19 @@ var owningTabPanel = grid.up('tabpanel');
             if (key in data) {
                 config[key] = data[key];
                 delete data[key];
+                // <debug warn>
                 Ext.Logger.deprecate(key + ' is deprecated as a property directly on the Component. ' +
                     'Please put it inside the config object, and retrieve it using "this.config.' + key + '"');
+                // </debug>
             }
         }
 
         data.config = config;
     }
+    // </deprecated>
 
 }, function() {
+   //<deprecated product=touch since=2.0>
     var emptyFn = Ext.emptyFn;
 
     this.override({
@@ -15909,7 +15978,9 @@ var owningTabPanel = grid.up('tabpanel');
 
             if (config) {
                 if (config.enabled) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'enabled' config is deprecated, please use 'disabled' config instead", this);
+                    //</debug>
                     config.disabled = !config.enabled;
                 }
 
@@ -15920,7 +15991,9 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0 This method has been moved from {@link Ext.Component} to {@link Ext.Container#scrollable Ext.Container}
                  */
                 if ((config.scroll || this.config.scroll || this.scrollable || this.config.scrollable) && !this.isContainer) {
+                    //<debug warn>
                     Ext.Logger.deprecate("You are no longer able to scroll a component. Please use a Ext.Container instead.", this);
+                    //</debug>
                     delete config.scrollable;
                     delete config.scroll;
                 }
@@ -15932,7 +16005,9 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0 This method has been moved from {@link Ext.Component} to {@link Ext.Container#hideOnMaskTap Ext.Container}
                  */
                 if ((config.hideOnMaskTap || this.config.hideOnMaskTap) && !this.isContainer) {
+                    //<debug warn>
                     Ext.Logger.deprecate("You are no longer able use hideOnMaskTap on a component. Please use a Ext.Container instead.", this);
+                    //</debug>
                     delete config.hideOnMaskTap;
                 }
 
@@ -15943,7 +16018,9 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0 This method has been moved from {@link Ext.Component} to {@link Ext.Container#modal Ext.Container}
                  */
                 if ((config.modal || this.config.modal) && !this.isContainer) {
+                    //<debug warn>
                     Ext.Logger.deprecate("You are no longer able use modal on a component. Please use a Ext.Container instead.", this);
+                    //</debug>
                     delete config.modal;
                 }
 
@@ -15968,19 +16045,25 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0 This has been deprecated. Please use {@link #docked} instead.
                  */
                 if (config.dock) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'dock' config for docked items is deprecated, please use 'docked' instead");
+                    //</debug>
                     config.docked = config.dock;
                     delete config.dock;
                 }
 
                 if (config.enterAnimation) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'enterAnimation' config for Components is deprecated, please use 'showAnimation' instead");
+                    //</debug>
                     config.showAnimation = config.enterAnimation;
                     delete config.enterAnimation;
                 }
 
                 if (config.exitAnimation) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'exitAnimation' config for Components is deprecated, please use 'hideAnimation' instead");
+                    //</debug>
                     config.hideAnimation = config.exitAnimation;
                     delete config.exitAnimation;
                 }
@@ -15991,7 +16074,9 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0
                  */
                 if (config.componentCls) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'componentCls' config is deprecated, please use 'cls' config instead", this);
+                    //</debug>
                     config.cls = config.componentCls;
                 }
 
@@ -16011,8 +16096,10 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0
                  */
                 if (config.floating) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'floating' config is deprecated, please set 'left', 'right', " +
                         "'top' or 'bottom' config instead", this);
+                    //</debug>
                     config.left = config.left || 0;
                 }
 
@@ -16028,7 +16115,9 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0
                  */
                 if (config.layoutOnOrientationChange) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'layoutOnOrientationChange' is fully deprecated and no longer used");
+                    //</debug>
                     delete config.layoutOnOrientationChange;
                 }
 
@@ -16038,7 +16127,9 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0
                  */
                 if (config.monitorOrientation) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'monitorOrientation' is deprecated. If you need to monitor the orientaiton, please use the 'resize' event.");
+                    //</debug>
                     delete config.monitorOrientation;
                 }
 
@@ -16048,7 +16139,9 @@ var owningTabPanel = grid.up('tabpanel');
                  * @deprecated 2.0.0
                  */
                 if (config.stopMaskTapEvent) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'stopMaskTapEvent' is deprecated.");
+                    //</debug>
                     delete config.stopMaskTapEvent;
                 }
             }
@@ -16056,27 +16149,37 @@ var owningTabPanel = grid.up('tabpanel');
             this.callParent(arguments);
 
             if (this.onRender !== emptyFn) {
+                //<debug warn>
                 Ext.Logger.deprecate("onRender() is deprecated, please put your code inside initialize() instead", this);
+                //</debug>
                 this.onRender();
             }
 
             if (this.afterRender !== emptyFn) {
+                //<debug warn>
                 Ext.Logger.deprecate("afterRender() is deprecated, please put your code inside initialize() instead", this);
+                //</debug>
                 this.afterRender();
             }
 
             if (this.initEvents !== emptyFn) {
+                //<debug warn>
                 Ext.Logger.deprecate("initEvents() is deprecated, please put your code inside initialize() instead", this);
+                //</debug>
                 this.initEvents();
             }
 
             if (this.initComponent !== emptyFn) {
+                //<debug warn>
                 Ext.Logger.deprecate("initComponent() is deprecated, please put your code inside initialize() instead", this);
+                //</debug>
                 this.initComponent();
             }
 
             if (this.setOrientation !== emptyFn) {
+                //<debug warn>
                 Ext.Logger.deprecate("setOrientation() is deprecated", this);
+                //</debug>
                 this.setOrientation();
             }
         },
@@ -16096,8 +16199,10 @@ var owningTabPanel = grid.up('tabpanel');
                 var containerDom = this.renderElement.dom.parentNode;
 
                 if (containerDom && containerDom.nodeType == 11) {
+                    //<debug warn>
                     Ext.Logger.deprecate("Call show() on a component that doesn't currently belong to any container. " +
                         "Please add it to the the Viewport first, i.e: Ext.Viewport.add(component);", this);
+                    //</debug>
                     Ext.Viewport.add(this);
                 }
             }
@@ -16106,6 +16211,7 @@ var owningTabPanel = grid.up('tabpanel');
         },
 
         doAddListener: function(name, fn, scope, options, order) {
+            // <debug>
             switch(name) {
                 case 'render':
                     Ext.Logger.warn("The render event on Components is deprecated. Please use the painted event. " +
@@ -16113,6 +16219,7 @@ var owningTabPanel = grid.up('tabpanel');
                     return this;
                 break;
             }
+            // </debug>
 
             return this.callParent(arguments);
         },
@@ -16135,8 +16242,10 @@ var owningTabPanel = grid.up('tabpanel');
          * @return {Ext.dom.Element}
          */
         getEl: function() {
+            //<debug warn>
             Ext.Logger.deprecate("getEl() is deprecated, please access the Component's element from " +
                 "the 'element' property instead", this);
+            //</debug>
             return this.renderElement;
         },
 
@@ -16162,7 +16271,9 @@ var owningTabPanel = grid.up('tabpanel');
          * @deprecated 2.0.0 This method has been moved from {@link Ext.Component} to {@link Ext.Container#setScrollable Ext.Container}
          */
         setScrollable: function() {
+            //<debug warn>
             Ext.Logger.deprecate("Ext.Component cannot be scrollable. Please use Ext.Container#setScrollable on a Ext.Container.", this);
+            //</debug>
             return false;
         }
     });
@@ -16181,6 +16292,7 @@ var owningTabPanel = grid.up('tabpanel');
         ownerCt: 'parent',
         update: 'setHtml'
     });
+    //</deprecated>
 });
 
 })(Ext.baseCSSPrefix);
@@ -16913,6 +17025,7 @@ Ext.define('Ext.Button', {
         handler.apply(scope, arguments);
     }
 }, function() {
+    //<deprecated product=touch since=2.0>
 
     /**
      * Updates the badge text
@@ -16939,7 +17052,9 @@ Ext.define('Ext.Button', {
                  * @deprecated 2.0.0 Please use {@link #badgeText} instead
                  */
                 if (config.hasOwnProperty('badge')) {
+                    //<debug warn>
                     Ext.Logger.deprecate("'badge' config is deprecated, please use 'badgeText' config instead", this);
+                    //</debug>
                     config.badgeText = config.badge;
                 }
             }
@@ -16948,6 +17063,7 @@ Ext.define('Ext.Button', {
         }
     });
 
+    //</deprecated>
 });
 
 /**
@@ -17872,6 +17988,7 @@ Ext.define('Ext.field.Input', {
         return this;
     },
 
+    //<debug>
     // @private
     applyTabIndex: function(tabIndex) {
         if (tabIndex !== null && typeof tabIndex != 'number') {
@@ -17879,6 +17996,7 @@ Ext.define('Ext.field.Input', {
         }
         return tabIndex;
     },
+    //</debug>
 
     /**
      * Updates the tabIndex attribute with the {@link #tabIndex} configuration
@@ -17893,12 +18011,14 @@ Ext.define('Ext.field.Input', {
         return [true, 'on'].indexOf(value) !== -1;
     },
 
+    //<debug>
     applyMaxLength: function(maxLength) {
         if (maxLength !== null && typeof maxLength != 'number') {
             throw new Error("Ext.field.Text: [applyMaxLength] trying to pass a value which is not a number");
         }
         return maxLength;
     },
+    //</debug>
 
     /**
      * Updates the maxlength attribute with the {@link #maxLength} configuration
@@ -18027,12 +18147,14 @@ Ext.define('Ext.field.Input', {
         this.updateFieldAttribute('readonly', readOnly);
     },
 
+    //<debug>
     // @private
     applyMaxRows: function(maxRows) {
         if (maxRows !== null && typeof maxRows !== 'number') {
             throw new Error("Ext.field.Input: [applyMaxRows] trying to pass a value which is not a number");
         }
     },
+    //</debug>
 
     updateMaxRows: function(newRows) {
         this.updateFieldAttribute('rows', newRows);
@@ -18919,9 +19041,11 @@ Ext.define('Ext.scroll.Scroller', {
 
         if (!container) {
             this.container = container = this.getElement().getParent();
+            //<debug error>
             if (!container) {
                 Ext.Logger.error("Making an element scrollable that doesn't have any container");
             }
+            //</debug>
             container.addCls(this.containerCls);
         }
 
@@ -18970,13 +19094,17 @@ Ext.define('Ext.scroll.Scroller', {
      * @return {Ext.scroll.Scroller} this
      */
     scrollTo: function(x, y, animation) {
+        //<deprecated product=touch since=2.0>
         if (typeof x != 'number' && arguments.length === 1) {
+            //<debug warn>
             Ext.Logger.deprecate("Calling scrollTo() with an object argument is deprecated, " +
                 "please pass x and y arguments instead", this);
+            //</debug>
 
             y = x.y;
             x = x.x;
         }
+        //</deprecated>
 
         var translatable = this.getTranslatable(),
             position = this.position,
@@ -19436,6 +19564,7 @@ Ext.define('Ext.scroll.Scroller', {
     }
 
 }, function() {
+    //<deprecated product=touch since=2.0>
     this.override({
         constructor: function(config) {
             var element, acceleration, slotSnapOffset, friction, springTension, minVelocity;
@@ -19451,8 +19580,10 @@ Ext.define('Ext.scroll.Scroller', {
             }
 
             if (arguments.length == 2) {
+                //<debug warn>
                 Ext.Logger.deprecate("Passing element as the first argument is deprecated, pass it as the " +
                     "'element' property of the config object instead");
+                //</debug>
                 element = config;
                 config = arguments[1];
 
@@ -19470,7 +19601,9 @@ Ext.define('Ext.scroll.Scroller', {
             if (config.hasOwnProperty('acceleration')) {
                 acceleration = config.acceleration;
                 delete config.acceleration;
+                //<debug warn>
                 Ext.Logger.deprecate("'acceleration' config is deprecated, set momentumEasing.momentum.acceleration and momentumEasing.bounce.acceleration configs instead");
+                //</debug>
 
                 Ext.merge(config, {
                     momentumEasing: {
@@ -19482,7 +19615,9 @@ Ext.define('Ext.scroll.Scroller', {
 
             if (config.hasOwnProperty('snap')) {
                 config.slotSnapOffset = config.snap;
+                //<debug warn>
                 Ext.Logger.deprecate("'snap' config is deprecated, please use the 'slotSnapOffset' config instead");
+                //</debug>
             }
 
             /**
@@ -19493,7 +19628,9 @@ Ext.define('Ext.scroll.Scroller', {
             if (config.hasOwnProperty('friction')) {
                 friction = config.friction;
                 delete config.friction;
+                //<debug warn>
                 Ext.Logger.deprecate("'friction' config is deprecated, set momentumEasing.momentum.friction config instead");
+                //</debug>
 
                 Ext.merge(config, {
                     momentumEasing: {
@@ -19505,7 +19642,9 @@ Ext.define('Ext.scroll.Scroller', {
             if (config.hasOwnProperty('springTension')) {
                 springTension = config.springTension;
                 delete config.springTension;
+                //<debug warn>
                 Ext.Logger.deprecate("'springTension' config is deprecated, set momentumEasing.momentum.springTension config instead");
+                //</debug>
 
                 Ext.merge(config, {
                     momentumEasing: {
@@ -19517,7 +19656,9 @@ Ext.define('Ext.scroll.Scroller', {
             if (config.hasOwnProperty('minVelocityForAnimation')) {
                 minVelocity = config.minVelocityForAnimation;
                 delete config.minVelocityForAnimation;
+                //<debug warn>
                 Ext.Logger.deprecate("'minVelocityForAnimation' config is deprecated, set momentumEasing.minVelocity config instead");
+                //</debug>
 
                 Ext.merge(config, {
                     momentumEasing: {
@@ -19530,16 +19671,20 @@ Ext.define('Ext.scroll.Scroller', {
         },
 
         scrollToAnimated: function(x, y, animation) {
+            //<debug warn>
             Ext.Logger.deprecate("scrollToAnimated() is deprecated, please use scrollTo() and pass 'animation' as " +
                 "the third argument instead");
+            //</debug>
 
             return this.scrollTo.apply(this, arguments);
         },
 
         scrollBy: function(x, y, animation) {
             if (Ext.isObject(x)) {
+                //<debug warn>
                 Ext.Logger.deprecate("calling scrollBy() with an object of x and y properties is no longer supported. " +
                         "Please pass x and y values as two separate arguments instead");
+                //</debug>
                 y = x.y;
                 x = x.x;
             }
@@ -19567,6 +19712,7 @@ Ext.define('Ext.scroll.Scroller', {
      * @deprecated 2.0.0 Please use {@link #method-refresh} instead.
      */
 //    Ext.deprecateClassMethod('updateBoundary', 'refresh');
+    //</deprecated>
 });
 
 Ext.define('Ext.scroll.indicator.Abstract', {
@@ -20119,11 +20265,14 @@ Ext.define('Ext.scroll.View', {
         this.setIndicatorValue('x', x);
         this.setIndicatorValue('y', y);
 
+        //<debug>
         if (this.isBenchmarking) {
             this.framesCount++;
         }
+        //</debug>
     },
 
+    //<debug>
     isBenchmarking: false,
 
     framesCount: 0,
@@ -20145,6 +20294,7 @@ Ext.define('Ext.scroll.View', {
 
         return fps;
     },
+    //</debug>
 
     setIndicatorValue: function(axis, scrollerPosition) {
         if (!this.isAxisEnabled(axis)) {
@@ -20900,9 +21050,11 @@ Ext.define('Ext.fx.layout.Card', {
 
             defaultClass = Ext.ClassManager.getByAlias('fx.layout.card.' + type);
 
+            //<debug error>
             if (!defaultClass) {
                 Ext.Logger.error("Unknown card animation type: '" + type + "'");
             }
+            //</debug>
         }
 
         return Ext.factory(config, defaultClass);
@@ -21113,9 +21265,11 @@ Ext.define('Ext.layout.Layout', {
         if (type) {
             layoutClass = Ext.ClassManager.getByAlias('layout.' + type);
 
+            //<debug error>
             if (!layoutClass) {
                 Ext.Logger.error("Unknown layout type of: '" + type + "'");
             }
+            //</debug>
         }
 
         return new layoutClass(container, config);
@@ -21683,19 +21837,23 @@ Ext.define('Ext.Container', {
         return this.onItemAdd.apply(this, arguments);
     },
 
+    //<debug error>
     updateLayout: function(newLayout, oldLayout) {
         if (oldLayout && oldLayout.isLayout) {
             Ext.Logger.error('Replacing a layout after one has already been initialized is not currently supported.');
         }
     },
+    //</debug>
 
     updateDefaultType: function(defaultType) {
         // Cache the direct reference to the default item class here for performance
         this.defaultItemClass = Ext.ClassManager.getByAlias('widget.' + defaultType);
 
+        //<debug error>
         if (!this.defaultItemClass) {
             Ext.Logger.error("Invalid defaultType of: '" + defaultType + "', must be a valid component xtype");
         }
+        //</debug>
     },
 
     applyDefaults: function(defaults) {
@@ -21706,19 +21864,23 @@ Ext.define('Ext.Container', {
     },
 
     factoryItem: function(item) {
+        //<debug error>
         if (!item) {
             Ext.Logger.error("Invalid item given: " + item + ", must be either the config object to factory a new item, " +
                 "or an existing component instance");
         }
+        //</debug>
 
         return Ext.factory(item, this.defaultItemClass);
     },
 
     factoryItemWithDefaults: function(item) {
+        //<debug error>
         if (!item) {
             Ext.Logger.error("Invalid item given: " + item + ", must be either the config object to factory a new item, " +
                 "or an existing component instance");
         }
+        //</debug>
 
         var me = this,
             defaults = me.getDefaults(),
@@ -22303,9 +22465,11 @@ Ext.define('Ext.Container', {
                 activeItem = this.factoryItem(activeItem);
             }
 
+            //<debug error>
             if (!activeItem.isInnerItem()) {
                 Ext.Logger.error("Setting activeItem to be a non-inner item");
             }
+            //</debug>
 
             if (!this.has(activeItem)) {
                 this.add(activeItem);
@@ -22507,6 +22671,7 @@ Ext.define('Ext.Container', {
     },
 
 
+    //<deprecated product=touch since=2.0>
     onClassExtended: function(Class, members) {
         if ('onAdd' in members || 'onRemove' in members) {
             throw new Error("["+Class.$className+"] 'onAdd()' and 'onRemove()' methods " +
@@ -22514,6 +22679,7 @@ Ext.define('Ext.Container', {
                             "and 'onItemRemove()' instead }");
         }
     },
+    //</deprecated>
 
     destroy: function() {
         var modal = this.getModal();
@@ -22530,6 +22696,7 @@ Ext.define('Ext.Container', {
 }, function() {
     this.addMember('defaultItemClass', this);
 
+    //<deprecated product=touch since=2.0>
     /**
      * @method addAll
      * Adds an array of Components to this Container.
@@ -22568,7 +22735,9 @@ Ext.define('Ext.Container', {
              * @deprecated 2.0.0 Please use the {@link #scrollable} configuration.
              */
             if (config.scroll) {
+                //<debug warn>
                 Ext.Logger.deprecate("'scroll' config is deprecated, please use 'scrollable' instead.", this);
+                //</debug>
 
                 config.scrollable = config.scroll;
                 delete config.scroll;
@@ -22577,14 +22746,18 @@ Ext.define('Ext.Container', {
             this.callParent(arguments);
 
             if (dockedItems) {
+                //<debug warn>
                 Ext.Logger.deprecate("'dockedItems' config is deprecated, please add all docked items inside the 'items' config with a 'docked' property indicating the docking position instead, i.e { /*...*/ docked: 'top' /*...*/ }");
+                //</debug>
 
                 dockedItems = Ext.Array.from(dockedItems);
 
                 for (i = 0,ln = dockedItems.length; i < ln; i++) {
                     item = dockedItems[i];
                     if ('dock' in item) {
+                        //<debug warn>
                         Ext.Logger.deprecate("'dock' config for docked items is deprecated, please use 'docked' instead");
+                        //</debug>
                         item.docked = item.dock;
                     }
                 }
@@ -22598,10 +22771,14 @@ Ext.define('Ext.Container', {
 
             if (args.length > 1) {
                 if (typeof args[0] == 'number') {
+                    //<debug warn>
                     Ext.Logger.deprecate("add(index, item) method signature is deprecated, please use insert(index, item) instead");
+                    //</debug>
                     return this.insert(args[0], args[1]);
                 }
+                //<debug warn>
                 Ext.Logger.deprecate("Passing items as multiple arguments is deprecated, please use one single array of items instead");
+                //</debug>
                 args = [Array.prototype.slice.call(args)];
             }
 
@@ -22614,7 +22791,9 @@ Ext.define('Ext.Container', {
                 position;
 
             if (overlay && docked) {
+                //<debug>
                 Ext.Logger.deprecate("'overlay' config is deprecated on docked items, please set the top/left/right/bottom configurations instead.", this);
+                //</debug>
 
                 if (docked == "top") {
                     position = {
@@ -22647,8 +22826,10 @@ Ext.define('Ext.Container', {
 
         applyDefaults: function(defaults) {
             if (typeof defaults == 'function') {
+                //<debug warn>
                 Ext.Logger.deprecate("Passing a function as 'defaults' is deprecated. To add custom logics when " +
                     "'defaults' is applied to each item, have your own factoryItem() method in your sub-class instead");
+                //</debug>
             }
 
             return this.callParent(arguments);
@@ -22665,7 +22846,9 @@ Ext.define('Ext.Container', {
 
             // String (must be the id of an existent component)
             if (typeof item == 'string') {
+                //<debug warn>
                 Ext.Logger.deprecate("Passing a string id of item ('"+item+"') is deprecated, please pass a reference to that item instead");
+                //</debug>
 
                 item = Ext.getCmp(item);
             }
@@ -22687,7 +22870,9 @@ Ext.define('Ext.Container', {
             if (Ext.isObject(masked) && !masked.isInstance && 'message' in masked && !('xtype' in masked) && !('xclass' in masked)) {
                 masked.xtype = 'loadmask';
 
+                //<debug warn>
                 Ext.Logger.deprecate("Using a 'message' config without specify an 'xtype' or 'xclass' will no longer implicitly set 'xtype' to 'loadmask'. Please set that explicitly.");
+                //</debug>
             }
 
             return this.callOverridden(arguments);
@@ -22695,6 +22880,7 @@ Ext.define('Ext.Container', {
     });
 
     Ext.deprecateClassMethod(this, 'setMask', 'setMasked');
+    //</deprecated>
 });
 
 
@@ -22936,12 +23122,14 @@ Ext.define('Ext.Toolbar', {
      */
 
 }, function() {
+    //<deprecated product=touch since=2.0>
     /**
      * @member Ext.Toolbar
      * @cfg {Boolean} titleCls
      * @deprecated 2.0.0 this title class is now a config option of the title
      */
     Ext.deprecateProperty(this, 'titleCls');
+    //</deprecated>
 });
 
 
@@ -23793,10 +23981,13 @@ Ext.define('Ext.carousel.Carousel', {
     }
 
 }, function() {
+    //<deprecated product=touch since=2.0>
     this.override({
         constructor: function(config) {
             if (config && 'activeIndex' in config) {
+                //<debug warn>
                 Ext.Logger.deprecate("'activeIndex' config is deprecated, please use 'activeItem' config instead }");
+                //</debug>
 
                 config.activeItem = config.activeIndex;
             }
@@ -23831,6 +24022,7 @@ Ext.define('Ext.carousel.Carousel', {
         },
         prev: 'previous'
     });
+    //</deprecated>
 });
 
 /**
@@ -24495,6 +24687,7 @@ Ext.define('Ext.field.Field', {
         return false;
     }
 }, function() {
+    //<deprecated product=touch since=2.0>
     var prototype = this.prototype;
 
     this.override({
@@ -24513,7 +24706,9 @@ Ext.define('Ext.field.Field', {
 
                     delete config[property];
 
+                    //<debug warn>
                     Ext.Logger.deprecate("'" + property + "' config is deprecated, use the '" + ((obj) ? obj + "." : "") + ((newProperty) ? newProperty : property) + "' config instead", 2);
+                    //</debug>
                 }
             };
 
@@ -24540,9 +24735,11 @@ Ext.define('Ext.field.Field', {
              */
             deprecateProperty('useClearIcon', null, 'clearIcon');
 
+            //<debug warn>
             if (config.hasOwnProperty('autoCreateField')) {
                 Ext.Logger.deprecate("'autoCreateField' config is deprecated. If you are subclassing Ext.field.Field and you do not want a Ext.field.Input, set the 'input' config to false.", this);
             }
+            //</debug>
 
             this.callOverridden(arguments);
         }
@@ -24550,7 +24747,9 @@ Ext.define('Ext.field.Field', {
 
     Ext.Object.defineProperty(prototype, 'fieldEl', {
         get: function() {
+            //<debug warn>
             Ext.Logger.deprecate("'fieldEl' is deprecated, please use getInput() to get an instance of Ext.field.Field instead", this);
+            //</debug>
 
             return this.getInput().input;
         }
@@ -24558,11 +24757,14 @@ Ext.define('Ext.field.Field', {
 
     Ext.Object.defineProperty(prototype, 'labelEl', {
         get: function() {
+            //<debug warn>
             Ext.Logger.deprecate("'labelEl' is deprecated", this);
+            //</debug>
 
             return this.getLabel().element;
         }
     });
+    //</deprecated>
 });
 
 /**
@@ -25024,6 +25226,7 @@ Ext.define('Ext.field.Text', {
     }
 });
 
+//<deprecated product=touch since=2.0>
 /**
  * @property startValue
  * @type String/Number
@@ -25031,6 +25234,7 @@ Ext.define('Ext.field.Text', {
  * @deprecated 2.0.0
  * @member Ext.field.Text
  */
+//</deprecated>
 
 /**
  * Creates an HTML textarea field on the page. This is useful whenever you need the user to enter large amounts of text
@@ -25252,7 +25456,9 @@ Ext.define('Ext.MessageBox', {
         config = config || {};
 
         if (config.hasOwnProperty('promptConfig')) {
+            //<debug warn>
             Ext.Logger.deprecate("'promptConfig' config is deprecated, please use 'prompt' config instead", this);
+            //</debug>
 
             Ext.applyIf(config, {
                 prompt: config.promptConfig
@@ -25600,7 +25806,9 @@ Ext.define('Ext.MessageBox', {
         config.buttons = buttonBarItems;
 
         if (config.promptConfig) {
+            //<debug warn>
             Ext.Logger.deprecate("'promptConfig' config is deprecated, please use 'prompt' config instead", this);
+            //</debug>
         }
         config.prompt = (config.promptConfig || config.prompt) || null;
 
@@ -25762,6 +25970,7 @@ Ext.define('Ext.MessageBox', {
         });
     }
 }, function(MessageBox) {
+    // <deprecated product=touch since=2.0>
     this.override({
         /**
          * @cfg {String} icon
@@ -25776,7 +25985,9 @@ Ext.define('Ext.MessageBox', {
          * @return {Ext.MessageBox} this
          */
         setIcon: function(iconCls, doLayout){
+            //<debug warn>
             Ext.Logger.deprecate("Ext.MessageBox#setIcon is deprecated, use setIconCls instead", 2);
+            //</debug>
             this.setIconCls(iconCls);
 
             return this;
@@ -25786,12 +25997,15 @@ Ext.define('Ext.MessageBox', {
          * @deprecated 2.0.0 Use #setMessage instead.
          */
         updateText: function(text){
+            //<debug warn>
             Ext.Logger.deprecate("Ext.MessageBox#updateText is deprecated, use setMessage instead", 2);
+            //</debug>
             this.setMessage(text);
 
             return this;
         }
     });
+    // </deprecated>
 
     Ext.onSetup(function() {
         /**
@@ -26711,6 +26925,7 @@ Ext.define('Ext.event.recognizer.Tap', {
     }
 
 }, function() {
+    //<deprecated product=touch since=2.0>
     this.override({
         handledEvents: ['tap', 'tapstart', 'tapcancel'],
 
@@ -26728,6 +26943,7 @@ Ext.define('Ext.event.recognizer.Tap', {
             return this.callOverridden(arguments);
         }
     });
+    //</deprecated>
 });
 
 /**
@@ -26898,6 +27114,7 @@ Ext.define('Ext.event.recognizer.LongPress', {
     }
 
 }, function() {
+    //<deprecated product=touch since=2.0>
     this.override({
         handledEvents: ['longpress', 'taphold'],
 
@@ -26912,6 +27129,7 @@ Ext.define('Ext.event.recognizer.LongPress', {
             return this.callOverridden(arguments);
         }
     });
+    //</deprecated>
 });
 
 /**
@@ -27885,10 +28103,12 @@ Ext.define('Ext.ComponentQuery', {
                             selector = selector.replace(selectorMatch[0], '');
                             break; // Break on match
                         }
+                        //<debug>
                         // Exhausted all matches: It's an error
                         if (i === (length - 1)) {
                             Ext.Error.raise('Invalid ComponentQuery selector: "' + arguments[0] + '"');
                         }
+                        //</debug>
                     }
                 }
 
@@ -28422,9 +28642,11 @@ Ext.define('Ext.event.publisher.ComponentSize', {
 
             component = Ext.ComponentManager.get(match[1]);
 
+            //<debug error>
             if (!component) {
                 Ext.Logger.error("Adding a listener to the 'resize' event of a non-existing component");
             }
+            //</debug>
 
             sizeMonitors[target] = new Ext.util.SizeMonitor({
                 element: component.element,
@@ -28474,6 +28696,7 @@ Ext.define('Ext.event.publisher.ComponentSize', {
     }
 });
 
+//<feature logger>
 Ext.define('Ext.log.Base', {
     config: {},
 
@@ -28483,7 +28706,9 @@ Ext.define('Ext.log.Base', {
         return this;
     }
 });
+//</feature>
 
+//<feature logger>
 /**
  * @class Ext.Logger
  * Logs messages to help with debugging.
@@ -28638,7 +28863,9 @@ var Logger = Ext.define('Ext.log.Logger', {
 });
 
 })();
+//</feature>
 
+//<feature logger>
 Ext.define('Ext.log.formatter.Formatter', {
     extend: 'Ext.log.Base',
 
@@ -28664,7 +28891,9 @@ Ext.define('Ext.log.formatter.Formatter', {
         return template;
     }
 });
+//</feature>
 
+//<feature logger>
 Ext.define('Ext.log.writer.Writer', {
     extend: 'Ext.log.Base',
 
@@ -28720,7 +28949,9 @@ Ext.define('Ext.log.writer.Writer', {
     // @private
     doWrite: Ext.emptyFn
 });
+//</feature>
 
+//<feature logger>
 Ext.define('Ext.log.writer.Console', {
 
     extend: 'Ext.log.writer.Writer',
@@ -28758,7 +28989,9 @@ Ext.define('Ext.log.writer.Console', {
         }
     }
 });
+//</feature>
 
+//<feature logger>
 Ext.define('Ext.log.formatter.Default', {
     extend: 'Ext.log.formatter.Formatter',
 
@@ -28774,6 +29007,7 @@ Ext.define('Ext.log.formatter.Default', {
         return this.callParent([event]);
     }
 });
+//</feature>
 
 /**
  * @private
@@ -29012,10 +29246,12 @@ Ext.define('Ext.fx.runner.Css', {
                 unit = value.match(this.lengthUnitRegex)[1];
 
                 if (unit.length > 0) {
+                    //<debug error>
                     if (unit !== lengthUnit) {
                         Ext.Logger.error("Length unit: '" + unit + "' in value: '" + value + "' of property: '" + name + "' is not " +
                             "valid for animation. Only 'px' is allowed");
                     }
+                    //</debug>
                 }
                 else {
                     return value + lengthUnit;
@@ -29816,6 +30052,7 @@ Ext.define('Ext.LoadMask', {
         });
     }
 }, function() {
+    //<deprecated product=touch since=2.0>
     this.override({
         constructor: function(config, other) {
             if (typeof other !== "undefined") {
@@ -29872,6 +30109,7 @@ Ext.define('Ext.LoadMask', {
             Ext.Logger.deprecate("You can no longer bind a store to a Ext.LoadMask", this);
         }
     });
+    //</deprecated>
 });
 
 /**
@@ -30479,7 +30717,9 @@ Ext.define('Ext.viewport.Android', {
             this.orientationChanging = false;
 
         }, function() {
+            //<debug error>
             Ext.Logger.error("Timeout waiting for viewport's outerHeight to change before firing orientationchange", this);
+            //</debug>
         });
 
         return this;
@@ -30679,7 +30919,9 @@ Ext.define('Ext.viewport.Ios', {
 
                 this.fireMaximizeEvent();
             }, function() {
+                //<debug error>
                 Ext.Logger.error("Timeout waiting for window.innerHeight to change", this);
+                //</debug>
             });
         }
     },
@@ -31473,9 +31715,11 @@ Ext.define('Ext.app.Controller', {
      * @private
      */
     applyRefs: function(refs) {
+        //<debug>
         if (Ext.isArray(refs)) {
             Ext.Logger.deprecate("In Sencha Touch 2 the refs config accepts an object but you have passed it an array.");
         }
+        //</debug>
 
         this.ref(refs);
 
@@ -31585,6 +31829,7 @@ Ext.define('Ext.app.Controller', {
         return this.references && this.references.indexOf(ref.toLowerCase()) !== -1;
     },
 
+    // <deprecated product=touch since=2.0>
     onClassExtended: function(cls, members) {
         var prototype = this.prototype,
             defaultConfig = prototype.config,
@@ -31613,15 +31858,19 @@ Ext.define('Ext.app.Controller', {
                 }
 
                 delete members[key];
+                // <debug warn>
                 Ext.Logger.deprecate(key + ' is deprecated as a property directly on the ' + this.$className + ' prototype. Please put it inside the config object.');
+                // </debug>
             }
         }
 
         if (stores) {
             length = stores.length;
 
+            // <debug warn>
             Ext.Logger.deprecate('\'stores\' is deprecated as a property directly on the ' + this.$className + ' prototype. Please move it ' +
                 'to Ext.application({ stores: ... }) instead');
+            // </debug>
 
             for (i = 0; i < length; i++) {
                 functionName = format("get{0}Store", Ext.String.capitalize(stores[i]));
@@ -31637,8 +31886,10 @@ Ext.define('Ext.app.Controller', {
         if (views) {
             length = views.length;
 
+            // <debug warn>
             Ext.Logger.deprecate('\'views\' is deprecated as a property directly on the ' + this.$className + ' prototype. Please move it ' +
                 'to Ext.application({ views: ... }) instead');
+            // </debug>
 
             for (i = 0; i < length; i++) {
                 functionName = format("get{0}View", views[i]);
@@ -31660,8 +31911,10 @@ Ext.define('Ext.app.Controller', {
      * (e.g. MyApp.model.User vs this.getModel('User')).
      */
     getModel: function(modelName) {
+        //<debug warn>
         Ext.Logger.deprecate("getModel() is deprecated and considered bad practice - please just use the Model " +
             "name instead (e.g. MyApp.model.User vs this.getModel('User'))");
+        //</debug>
 
         var appName = this.getApplication().getName(),
             classes = Ext.ClassManager.classes;
@@ -31675,12 +31928,15 @@ Ext.define('Ext.app.Controller', {
      * please use this.getApplication().getController() instead
      */
     getController: function(controllerName, profile) {
+        //<debug warn>
         Ext.Logger.deprecate("Ext.app.Controller#getController is deprecated and considered bad practice - " +
             "please use this.getApplication().getController('someController') instead");
+        //</debug>
 
         return this.getApplication().getController(controllerName, profile);
     },
 
+    // </deprecated>
 
     //TO IMPLEMENT
 
@@ -31690,6 +31946,7 @@ Ext.define('Ext.app.Controller', {
     addProfiles: Ext.emptyFn,
     addModels: Ext.emptyFn
 }, function() {
+    // <deprecated product=touch since=2.0>
     Ext.regController = function(name, config) {
         Ext.apply(config, {
             extend: 'Ext.app.Controller'
@@ -31701,6 +31958,7 @@ Ext.define('Ext.app.Controller', {
         );
         Ext.define('controller.' + name, config);
     };
+    // </deprecated>
 });
 
 /**
@@ -32255,6 +32513,7 @@ Ext.Router.draw(function(map) {
         this.setRoutes([]);
     }
 }, function() {
+    //<deprecated product=touch since=2.0>
     /**
      * Restores compatibility for the old Ext.Router.draw syntax. This needs to be here because apps often include
      * routes.js just after app.js, so this is our only opportunity to hook this in. There is a small piece of code
@@ -32297,6 +32556,7 @@ Ext.Router.draw(function(map) {
             drawStack.push(mapperFn);
         }
     };
+    //</deprecated>
 });
 
 /**
@@ -32674,12 +32934,14 @@ Ext.define('Ext.app.Application', {
             this[key] = config[key];
         }
 
+        // <deprecated product=touch since=2.0>
         if (config.autoCreateViewport) {
             Ext.Logger.deprecate(
                 '[Ext.app.Application] autoCreateViewport has been deprecated in Sencha Touch 2. Please implement a ' +
                 'launch function on your Application instead and use Ext.create("MyApp.view.Main") to create your initial UI.'
             );
         }
+        // </deprecated>
 
         if (this.getEnableLoader() !== false) {
             Ext.require(this.getProfiles(), this.onProfilesLoaded, this);
@@ -32894,11 +33156,13 @@ Ext.define('Ext.app.Application', {
             launcher = this.getLaunch(),
             controllers, name;
 
+        //<deprecated product=touch since=2.0>
         Ext.app.Application.appInstance = this;
 
         if (Ext.Router) {
             Ext.Router.setAppInstance(this);
         }
+        //</deprecated>
 
         me.instantiateStores();
         me.instantiateControllers();
@@ -33110,7 +33374,9 @@ Ext.define('Ext.app.Application', {
             oldName = name;
             name = name.replace(/ /g, "");
 
+            // <debug>
             Ext.Logger.warn('Attempting to create an application with a name which contains whitespace ("' + oldName + '"). Renamed to "' + name + '".');
+            // </debug>
         }
 
         return name;
@@ -33154,6 +33420,7 @@ Ext.define('Ext.app.Application', {
         this.dispatch(this.getRouter().recognize(url), false);
     }
 }, function() {
+    // <deprecated product=touch since=2.0>
     Ext.regApplication = function(config) {
         Ext.Logger.deprecate(
             '[Ext.app.Application] Ext.regApplication() is deprecated, please replace it with Ext.application()'
@@ -33213,6 +33480,7 @@ Ext.define('Ext.app.Application', {
         }
     };
 
+    // </deprecated>
 });
 
 /**
@@ -33394,9 +33662,11 @@ Ext.define('Ext.data.Operation', {
             model = Ext.data.ModelManager.registerType(model.storeId || model.id || Ext.id(), model);
         }
 
+        // <debug>
         if (!model) {
             Ext.Logger.error('An Operation needs to have a model defined.');
         }
+        // </debug>
 
         return model;
     },
@@ -33533,9 +33803,11 @@ Ext.define('Ext.data.Operation', {
             if (currentRecord) {
                 this.updateRecord(currentRecord, updatedRecord);
             }
+            // <debug>
             else {
                 Ext.Logger.warn('Unable to match the record that came back from the server.');
             }
+            // </debug>
         }
 
         return true;
@@ -33554,9 +33826,11 @@ Ext.define('Ext.data.Operation', {
             if (currentRecord) {
                 this.updateRecord(currentRecord, updatedRecord);
             }
+            // <debug>
             else {
                 Ext.Logger.warn('Unable to match the updated record that came back from the server.');
             }
+            // </debug>
         }
 
         return true;
@@ -33575,9 +33849,11 @@ Ext.define('Ext.data.Operation', {
                 currentRecord.setIsErased(true);
                 currentRecord.notifyStores('afterErase', currentRecord);
             }
+            // <debug>
             else {
                 Ext.Logger.warn('Unable to match the destroyed record that came back from the server.');
             }
+            // </debug>
         }
     },
 
@@ -34025,9 +34301,11 @@ Ext.define('Ext.mixin.Sortable', {
                 }
             }
             // Finally we get to the point where it has to be invalid
+            // <debug>
             else {
                 Ext.Logger.warn('Invalid sorter specified:', sorter);
             }
+            // </debug>
 
             // If a sorter config was created, make it an instance
             sorter = Ext.create('Ext.util.Sorter', sorterConfig);
@@ -34329,9 +34607,11 @@ Ext.define('Ext.mixin.Filterable', {
                 }
             }
             // Finally we get to the point where it has to be invalid
+            // <debug>
             else {
                 Ext.Logger.warn('Invalid filter specified:', filter);
             }
+            // </debug>
 
             // If a sorter config was created, make it an instance
             filter = Ext.create('Ext.util.Filter', filterConfig);
@@ -35581,9 +35861,11 @@ Ext.define('Ext.data.Connection', {
 
         url = this.setupUrl(options, url);
 
+        //<debug>
         if (!url) {
             Ext.Logger.error('No URL specified');
         }
+        //</debug>
 
         // check for xml or json data, and make sure json data is encoded
         data = options.rawData || options.xmlData || jsonData || null;
@@ -36658,7 +36940,9 @@ Ext.define('Ext.data.Field', {
         if (config.useNull !== undefined) {
             config.allowNull = config.useNull;
             delete config.useNull;
+            // <debug>
             Ext.Logger.warn('useNull has been deprecated on a Field definition. Please use allowNull instead.');
+            // </debug>
         }
 
         this.initConfig(config);
@@ -37387,7 +37671,9 @@ Ext.define('Ext.util.Collection', {
             ln, key, i, item;
 
         if (sorted && this.getAutoSort()) {
+            // <debug>
             Ext.Logger.error('Inserting a collection of items into a sorted Collection is invalid. Please just add these items or remove the sorters.');
+            // </debug>
         }
 
         if (Ext.isObject(insertItems)) {
@@ -38228,9 +38514,11 @@ Ext.define('Ext.AbstractManager', {
         var type        = config[this.typeName] || config.type || defaultType,
             Constructor = this.types[type];
 
+        //<debug>
         if (Constructor == undefined) {
             Ext.Error.raise("The '" + type + "' type has not been registered with this manager");
         }
+        //</debug>
 
         return new Constructor(config);
     },
@@ -38469,8 +38757,10 @@ Ext.define('Ext.data.ModelManager', {
      * @deprecated 2.0.0 Use {@link Ext#define} instead.
      */
     Ext.regModel = function() {
+        //<debug>
         Ext.Logger.deprecate('Ext.regModel has been deprecated. Models can now be created by ' +
             'extending Ext.data.Model: Ext.define("MyModel", {extend: "Ext.data.Model", fields: []});.');
+        //</debug>
         return this.ModelManager.registerType.apply(this.ModelManager, arguments);
     };
 });
@@ -38663,7 +38953,9 @@ Ext.define('Ext.data.association.Association', {
                     case 'hasOne':
                         return Ext.create('Ext.data.association.HasOne', association);
                     default:
+                        //<debug>
                         Ext.Logger.error('Unknown Association type: "' + association.type + '"');
+                        //</debug>
                 }
             }
 
@@ -38749,6 +39041,7 @@ Ext.define('Ext.data.association.Association', {
     }
 
     // Convert old properties in data into a config object
+    // <deprecated product=touch since=2.0>
     ,onClassExtended: function(cls, data, hooks) {
         var Component = this,
             defaultConfig = Component.prototype.config,
@@ -38760,13 +39053,16 @@ Ext.define('Ext.data.association.Association', {
             if (key in data) {
                 config[key] = data[key];
                 delete data[key];
+                // <debug warn>
                 Ext.Logger.deprecate(key + ' is deprecated as a property directly on the Association prototype. ' +
                     'Please put it inside the config object.');
+                // </debug>
             }
         }
 
         data.config = config;
     }
+    // </deprecated>
 });
 
 /**
@@ -38964,7 +39260,9 @@ Ext.define('Ext.data.association.HasMany', {
         config = config || {};
 
         if (config.storeConfig) {
+            // <debug>
             Ext.Logger.warn('storeConfig is deprecated on an association. Instead use the store configuration.');
+            // </debug>
             config.store = config.storeConfig;
             delete config.storeConfig;
         }
@@ -41164,12 +41462,14 @@ Ext.define('Ext.data.Model', {
         me.callParent(arguments);
     },
 
+    //<debug>
     markDirty : function() {
         if (Ext.isDefined(Ext.Logger)) {
             Ext.Logger.deprecate('Ext.data.Model: markDirty has been deprecated. Use setDirty instead.');
         }
         return this.setDirty.apply(this, arguments);
     },
+    //</debug>
 
     applyProxy: function(proxy, currentProxy) {
         return Ext.factory(proxy, Ext.data.Proxy, currentProxy, 'proxy');
@@ -41355,20 +41655,26 @@ Ext.define('Ext.data.Model', {
             key;
 
         // Convert old properties in data into a config object
+        // <deprecated product=touch since=2.0>
         if (data.idgen || config.idgen) {
             config.identifier = data.idgen || config.idgen;
+            // <debug warn>
             Ext.Logger.deprecate('idgen is deprecated as a property. Please put it inside the config object' +
                 ' under the new "identifier" configuration');
+            // </debug>
         }
 
         for (key in defaultConfig) {
             if (key in data) {
                 config[key] = data[key];
                 delete data[key];
+                // <debug warn>
                 Ext.Logger.deprecate(key + ' is deprecated as a property directly on the Model prototype. ' +
                     'Please put it inside the config object.');
+                // </debug>
             }
         }
+        // </deprecated>
         data.config = config;
 
         hooks.onBeforeCreated = function(cls, data) {
@@ -41488,7 +41794,7 @@ Ext.define('apod.model.Picture', {
                     var content = record.get('content'),
                         regex   = /img src=\"([a-zA-Z0-9\_\.\/\:]*)\"/,
                         match   = content.match(regex),
-                        src     = match[1];
+                        src     = match ? match[1] : '';
 
                     if (src != "" && !src.match(/\.gif$/)) {
                         src = "http://src.sencha.io/screen.width/" + src;
@@ -41977,7 +42283,9 @@ Ext.define('Ext.data.proxy.Client', {
      * from the client side storage, as well as removing any supporting data (such as lists of record IDs)
      */
     clear: function() {
+        //<debug>
         Ext.Logger.error("The Ext.data.proxy.Client subclass that you are using has not defined a 'clear' function. See src/data/ClientProxy.js for details.");
+        //</debug>
     }
 });
 
@@ -42657,6 +42965,8 @@ Ext.define('Ext.data.Store', {
             delete config.id;
         }
 
+        // <deprecated product=touch since=2.0>
+        // <debug>
         if (config.hasOwnProperty('sortOnLoad')) {
             Ext.Logger.deprecate(
                 '[Ext.data.Store] sortOnLoad is always activated in Sencha Touch 2 so your Store is always fully ' +
@@ -42678,6 +42988,8 @@ Ext.define('Ext.data.Store', {
                 '[Ext.data.Store] sortOnFilter is deprecated and is always effectively true when sorting and filtering locally'
             );
         }
+        // </debug>
+        // </deprecated>
 
         this.initConfig(config);
     },
@@ -42741,9 +43053,11 @@ Ext.define('Ext.data.Store', {
             model = this.getProxy().getModel();
         }
 
+        // <debug>
         if (!model) {
             Ext.Logger.error('A store needs to have a model defined on either itself or on its proxy');
         }
+        // </debug>
 
         return model;
     },
@@ -42870,7 +43184,9 @@ Ext.define('Ext.data.Store', {
     applyGetGroupString: function(getGroupStringFn) {
         var grouper = this.getGrouper();
         if (getGroupStringFn) {
+            // <debug>
             Ext.Logger.warn('Specifying getGroupString on a store has been deprecated. Please use grouper: {groupFn: yourFunction}');
+            // </debug>
 
             if (grouper) {
                 grouper.setGroupFn(getGroupStringFn);
@@ -43596,9 +43912,11 @@ Ext.define('Ext.data.Store', {
             group,
             i;
 
+        // <debug>
         if (!grouper) {
             Ext.Logger.error('Trying to get groups for a store that has no grouper');
         }
+        // </debug>
 
         for (i = 0; i < length; i++) {
             record = records[i];
@@ -44117,6 +44435,7 @@ Ext.define('Ext.data.Store', {
         this.loadPage(this.currentPage - 1, options);
     }
 
+    // <deprecated product=touch since=2.0>
     ,onClassExtended: function(cls, data) {
         var prototype = this.prototype,
             defaultConfig = prototype.config,
@@ -44128,8 +44447,10 @@ Ext.define('Ext.data.Store', {
             if (key != "control" && key in data) {
                 config[key] = data[key];
                 delete data[key];
+                // <debug warn>
                 Ext.Logger.deprecate(key + ' is deprecated as a property directly on the ' + this.$className +
                     ' prototype. Please put it inside the config object.');
+                // </debug>
             }
         }
 
@@ -44155,6 +44476,7 @@ Ext.define('Ext.data.Store', {
 
         //@private
         doAddListener: function(name, fn, scope, options, order) {
+            // <debug>
             switch(name) {
                 case 'update':
                     Ext.Logger.warn('The update event on Store has been deprecated. Please use the updaterecord event from now on.');
@@ -44170,6 +44492,7 @@ Ext.define('Ext.data.Store', {
                     return this;
                 break;
             }
+            // </debug>
 
             return this.callParent(arguments);
         }
@@ -44177,8 +44500,12 @@ Ext.define('Ext.data.Store', {
 
     // @TODO: put back backwards compat version of the collect method, or just leave it out
 
+    // </deprecated>
 });
 
+/**
+ * Grabs the APOD RSS feed from Google's Feed API, passes the data to our Model to decode
+ */
 Ext.define('apod.store.Pictures', {
     extend: 'Ext.data.Store',
     
