@@ -15,7 +15,7 @@ Ext.define('apod.model.Picture', {
                 type: 'string',
                 convert: function(value, record) {
                     var content = record.get('content'),
-                        regex   = /img src=\"([a-zA-Z0-9\_\.\/\:]*)\"/,
+                        regex   = /img src=\"([a-zA-Z0-9\-\_\.\/\:]*)\"/,
                         match   = content.match(regex),
                         src     = match ? match[1] : '';
 
